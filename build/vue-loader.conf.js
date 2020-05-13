@@ -17,7 +17,7 @@ module.exports = {
   loaders: {
     ...utils.cssLoaders({
           sourceMap: sourceMapEnabled,
-          extract: isProduction
+          // extract: isProduction
         }),
     coffee: 'babel-loader?presets[]=es2015&plugins[]=transform-async-to-generator!coffee-loader',
     js: babelLoader
