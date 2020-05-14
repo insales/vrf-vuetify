@@ -10,7 +10,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "build": "node build/build.js",
-    "pub": "npm run build && npm publish"
+    "pub": "npm run build && npm publish",
+    "analyze": "webpack --config build/webpack.prod.conf.js --json > stats.json"
   },
   "main": "dist/static/lib.js",
   "dependencies": {
