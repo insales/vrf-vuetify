@@ -76,8 +76,6 @@
 <script lang="coffee">
 
 import {descriptors} from 'vrf'
-import moment from 'moment'
-import Vue from 'vue'
 
 export default {
   extends: descriptors.datepicker
@@ -95,7 +93,7 @@ export default {
   computed:
     # fix it
     locale: ->
-      Vue::VueResourceForm.locale
+      @VueResourceForm.locale
 
     dateText: ->
       if @withTime
