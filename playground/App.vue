@@ -11,7 +11,7 @@
           <rf-input name="title" />
           <rf-checkbox name="status" />
           <rf-switch name="status" />
-          <rf-datepicker name="finishTill" />
+          <rf-datepicker name="finishTill" with-time />
           <rf-select name="importance" :options="importanceOptions" />
           <rf-textarea name="description" />
           <rf-span name="owner" />

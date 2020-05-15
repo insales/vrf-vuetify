@@ -1,12 +1,10 @@
 <template>
 
 <v-menu
-  lazy
   :close-on-content-click="false"
   v-model="datepickerVisible"
   transition="scale-transition"
   offset-y
-  full-width
   min-width="290px"
   :disabled="$disabled"
 >
@@ -77,8 +75,15 @@
 
 import {descriptors} from 'vrf'
 
+lz = (v) ->
+  return v if v > 9
+  "0#{v}"
+
 export default {
   extends: descriptors.datepicker
+  props:
+    noLabel: Boolean
+    withTime: Boolean
 
   data: ->
     datepickerVisible: false
@@ -91,38 +96,47 @@ export default {
       @timeVisible = false
 
   computed:
-    # fix it
     locale: ->
       @VueResourceForm.locale
 
     dateText: ->
+      return unless @dateValue
+
+      # TODO: format settings in vrf and delegate to interceptor
+      tokens = @dateValue.split("-")
+
+      date = tokens[2] + "." + tokens[1] + "." + tokens[0]
+
       if @withTime
-        @value?.format('DD.MM.YYYY HH:mm')
+        date + " " + @timeValue
       else
-        @value?.format('DD.MM.YYYY')
+        date
+
     dateValue:
       get: ->
-        @value?.format('YYYY-MM-DD')
+        @VueResourceForm.dateInterceptor.out(@value)?.substring(0, 10)
+
       set: (value) ->
-        if @withTime
-          @value = moment(value + " " + @timeValue)
-        else
-          @value = moment(value)
+        @value = @VueResourceForm.dateInterceptor.in(value + "T" + @timeValue)
 
     date: ->
-      @dateText?.split(' ')[0]
+      @dateText?.split('T')[0]
     time: ->
-      @dateText?.split(' ')[1]
+      @dateText?.split('T')[1]
     timeValue:
       get: ->
-        @value?.format('HH:mm')
+        @VueResourceForm.dateInterceptor.out(@value)?.substring(11, 16) || "00:00"
       set: (time) ->
-        if time.length == 4
-          hours = parseInt(time.substring(0, 2))
-          minutes = parseInt(time.substring(2))
-          hours = 23 if hours > 23
-          minutes = 59 if minutes > 59
-          @value = moment(@dateValue + " " + hours + ":" + minutes)
+        return unless /\d\d:\d\d/.test(time)
+
+        hours = parseInt(time.substring(0, 2))
+        minutes = parseInt(time.substring(3))
+
+        hours = 23 if hours > 23
+        minutes = 59 if minutes > 59
+
+        @value = @VueResourceForm.dateInterceptor.in(@dateValue + "T" + lz(hours) + ":" + lz(minutes))
+
   methods:
     onInput: ->
       @datepickerVisible = false if !@withTime
@@ -133,12 +147,10 @@ export default {
       minutes = parseInt(@timeValue.split(':')[1]) + incMinutes
       hours = if hours < 0 then 24 + hours % 24 else hours % 24
       minutes = if minutes < 0 then 60 + minutes % 60 else minutes % 60
-      @value = moment(@dateValue + " " + hours + ":" + minutes)
 
-  props:
-    noLabel: Boolean
-    withTime: Boolean
+      value = @dateValue + "T" + lz(hours) + ":" + lz(minutes)
 
+      @value = @VueResourceForm.dateInterceptor.in(value)
 }
 
 </script>

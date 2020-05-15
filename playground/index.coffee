@@ -6,7 +6,10 @@ import vuetify from './vuetify'
 # import vrf from '../dist/static/lib'
 
 Vue.config.productionTip = false
-Vue.use(vrf, translate: (property) -> property)
+Vue.use(
+  vrf
+  translate: (property) -> property
+)
 
 
 new Vue({
