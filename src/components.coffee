@@ -14,6 +14,7 @@ import RfTextarea from './components/textarea'
 import RfDatepicker from './components/datepicker'
 import RfSubmit from './components/submit'
 import RfForm from './components/form'
+import RfAutocomplete from './components/autocomplete'
 
 
 
@@ -31,6 +32,7 @@ export {
   RfPartial
   RfResource
   RfNested
+  RfAutocomplete
 
   RfSubmit
   RfSpan
