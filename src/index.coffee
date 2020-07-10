@@ -1,5 +1,6 @@
 import {installer, Resource} from 'vrf'
 import * as components from './components'
+import AutocompleteProvider from './autocomplete-provider'
 
 
 _components = {...components}
