@@ -28,9 +28,6 @@ export default {
     autofocus: Boolean
     suffix: String
     noLabel: Boolean
-  methods:
-    onInput: ->
-      @$emit("input")
 }
 
 </script>
