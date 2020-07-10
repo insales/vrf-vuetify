@@ -32,7 +32,6 @@
           ref="autocomplete"
           :name="name"
         />
-        <v-text-field />
       </template>
       <component :is="itemsComponent" :items="items" @select="onSelect" />
       <!-- <v-list> -->
