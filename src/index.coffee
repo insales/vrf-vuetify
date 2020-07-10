@@ -10,4 +10,5 @@ export default installer(_components)
 
 export {
   Resource
+  AutocompleteProvider
 }
