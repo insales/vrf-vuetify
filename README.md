@@ -1,6 +1,6 @@
 # vrf
 
-Vue Resource Form is a solution for quickly writing declarative user interface forms.
+Vrf adapter for Vuetify.
 
 >
 
