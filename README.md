@@ -1,6 +1,6 @@
-# vrf
+# vrf-vuetify
 
-Vrf adapter for Vuetify.
+[Vrf](https://github.com/dimailn/vrf) adapter for Vuetify.
 
 >
 
