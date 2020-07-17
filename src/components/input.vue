@@ -10,6 +10,7 @@
   :suffix="suffix"
   @keyup.enter="submit"
   @input="onInput"
+  @change="onChange"
   :name="name"
   :tabindex="tabindex"
   :messages="messages"

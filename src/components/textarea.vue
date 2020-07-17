@@ -10,6 +10,7 @@
   :no-resize="noResize"
   :rows="rows"
   :tabindex="tabindex"
+  @change="onChange"
 />
 </template>
 
