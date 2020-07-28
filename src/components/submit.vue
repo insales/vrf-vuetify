@@ -9,7 +9,7 @@
   v-if="!$disabled"
 >
   <div :class="{'transparent': showSuccess}">
-    <slot />
+    <slot>{{humanName}}</slot>
   </div>
   <transition name="fade">
     <v-icon color="white" class="icon-success" v-if="showSuccess">mdi-check</v-icon>
