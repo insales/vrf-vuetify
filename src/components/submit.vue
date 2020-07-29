@@ -52,7 +52,7 @@ export default {
     handleSubmit: ->
       return if @showSuccess
 
-      @submit()
+      @$submit()
 
 }
 
