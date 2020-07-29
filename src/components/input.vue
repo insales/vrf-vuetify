@@ -8,7 +8,7 @@
   :required="required"
   :autofocus="autofocus"
   :suffix="suffix"
-  @keyup.enter="submit"
+  @keyup.enter="$submit"
   @input="onInput"
   @change="onChange"
   :name="name"
