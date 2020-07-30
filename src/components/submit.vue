@@ -1,12 +1,8 @@
 <template>
 <v-btn
   @click="handleSubmit"
-  :color="color"
-  :loading="saving"
-  :disabled="$disabled"
-  :class="{'not-clickable': showSuccess}"
-  class="submit-btn"
   v-if="!$disabled"
+  v-bind="props"
 >
   <div :class="{'transparent': showSuccess}">
     <slot>{{humanName}}</slot>
@@ -22,8 +18,37 @@
 import {descriptors} from 'vrf'
 
 
+pick = (object, keys) ->
+  keys.reduce(
+    (obj, key) ->
+      if object && key of object
+        obj[key] = object[key]
+
+      obj
+   {}
+  )
+
+vuetifyBooleanProps = [
+  'fab'
+  'large'
+  'small'
+  'xLarge'
+  'xSmall'
+  'rounded'
+  'shaped'
+  'depressed'
+]
+
 export default {
   extends: descriptors.submit
+
+  props:
+    vuetifyBooleanProps.reduce(
+      (props, name) ->
+        props[name] = Boolean
+        props
+      {}
+    )
 
   data: ->
     showSuccess: false
@@ -43,6 +68,17 @@ export default {
             )
           2000
         )
+
+  computed:
+    props: ->
+      {
+        color: @color
+        loading: @saving
+        disabled: @$disabled
+        class: {'not-clickable': @showSuccess, 'submit-btn': true}
+        ...pick(@, vuetifyBooleanProps)
+      }
+
 
   # computed:
   #   color: ->
