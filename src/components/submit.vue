@@ -55,8 +55,8 @@ export default {
     color: 'primary'
 
   watch:
-    saving: ->
-      if not @saving && Object.keys(@errors).length is 0
+    $saving: ->
+      if not @$saving && Object.keys(@errors).length is 0
         @showSuccess = true
         @color = 'green'
         setTimeout(
@@ -73,7 +73,7 @@ export default {
     props: ->
       {
         color: @color
-        loading: @saving
+        loading: @$saving
         disabled: @$disabled
         class: {'not-clickable': @showSuccess, 'submit-btn': true}
         ...pick(@, vuetifyBooleanProps)
