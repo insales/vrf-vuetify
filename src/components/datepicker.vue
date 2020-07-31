@@ -15,7 +15,7 @@
       :label="noLabel ? '' :humanName"
       v-on="on"
       :disabled="$disabled"
-      :error-messages="errors[name] && errors[name][0]"
+      :error-messages="$errors[name] && $errors[name][0]"
     />
   </template>
   <div style="display: flex; flex-direction: column">

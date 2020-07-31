@@ -8,7 +8,7 @@
   :item-value="idKey"
   :item-text="titleKey"
   :label="humanName"
-  :error-messages="errors[name] && errors[name][0]"
+  :error-messages="$errors[name] && $errors[name][0]"
   :disabled="$disabled"
   :multiple="multiple"
   :clearable="clearable"

@@ -4,7 +4,7 @@
   v-model="value"
   :disabled="$disabled"
   :label="noLabel ? '' : humanName"
-  :error-messages="errors[name] && errors[name][0]"
+  :error-messages="$errors[name] && $errors[name][0]"
   :required="required"
   :autofocus="autofocus"
   :suffix="suffix"

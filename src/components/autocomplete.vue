@@ -21,7 +21,7 @@
         :label="humanName"
         :disabled="$disabled"
         :clearable="clearable"
-        :error-messages="errors[name] && errors[name][0]"
+        :error-messages="$errors[name] && $errors[name][0]"
         :placeholder="placeholder"
         @keydown="onKeydown"
         @click="onClick"

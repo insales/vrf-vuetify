@@ -3,7 +3,7 @@
   v-model="value"
   :disabled="$disabled"
   :label="humanName"
-  :error-messages="errors[name] && errors[name][0]"
+  :error-messages="$errors[name] && $errors[name][0]"
   :required="required"
   outlined
   multi-line

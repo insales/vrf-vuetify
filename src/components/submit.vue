@@ -56,7 +56,7 @@ export default {
 
   watch:
     $saving: ->
-      if not @$saving && Object.keys(@errors).length is 0
+      if not @$saving && Object.keys(@$errors).length is 0
         @showSuccess = true
         @color = 'green'
         setTimeout(
