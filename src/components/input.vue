@@ -8,6 +8,7 @@
   :required="required"
   :autofocus="autofocus"
   :suffix="suffix"
+  :placeholder="placeholder"
   @keyup.enter="$submit"
   @input="onInput"
   @change="onChange"
