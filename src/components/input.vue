@@ -15,6 +15,7 @@
   :name="name"
   :tabindex="tabindex"
   :messages="messages"
+  :type="password ? 'password' : 'text'"
 />
 
 
