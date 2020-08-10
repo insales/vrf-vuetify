@@ -10,3 +10,7 @@ export default {
   name: 'vrf-vuetify'
   components
 }
+
+export {
+  AutocompleteProvider
+}
