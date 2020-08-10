@@ -48,10 +48,8 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
-
 export default {
-  extends: descriptors.autocomplete
+  vrfParent: 'autocomplete'
   props:
     messages: Array
     clearable: Boolean

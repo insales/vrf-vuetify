@@ -1,11 +1,10 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
 import Spinner from './spinner'
 
 export default {
-  extends: descriptors.form
+  vrfParent: 'form'
   render: (h) ->
     return @$slots.default[0] if @pathService && @$slots.default
 

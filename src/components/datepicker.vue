@@ -52,7 +52,7 @@
     />
 
     <v-card v-if="withTime">
-      <v-layout style="margin-top: -10px" v-if="value">
+      <v-layout style="margin-top: -10px" v-if="$value">
         <v-btn class="flex xs6" v-if="timeVisible" color="black" text @click="timeVisible = !timeVisible">
           <v-icon class="mr-1">mdi-today</v-icon>
           {{ date }}
@@ -73,14 +73,12 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
-
 lz = (v) ->
   return v if v > 9
   "0#{v}"
 
 export default {
-  extends: descriptors.datepicker
+  vrfParent: 'datepicker'
   props:
     noLabel: Boolean
     withTime: Boolean
@@ -114,10 +112,10 @@ export default {
 
     dateValue:
       get: ->
-        @VueResourceForm.dateInterceptor.out(@value)?.substring(0, 10)
+        @VueResourceForm.dateInterceptor.out(@$value)?.substring(0, 10)
 
       set: (value) ->
-        @value = @VueResourceForm.dateInterceptor.in(value + "T" + @timeValue)
+        @$value = @VueResourceForm.dateInterceptor.in(value + "T" + @timeValue)
 
     date: ->
       @dateText?.split('T')[0]
@@ -125,7 +123,7 @@ export default {
       @dateText?.split('T')[1]
     timeValue:
       get: ->
-        @VueResourceForm.dateInterceptor.out(@value)?.substring(11, 16) || "00:00"
+        @VueResourceForm.dateInterceptor.out(@$value)?.substring(11, 16) || "00:00"
       set: (time) ->
         return unless /\d\d:\d\d/.test(time)
 
@@ -135,7 +133,7 @@ export default {
         hours = 23 if hours > 23
         minutes = 59 if minutes > 59
 
-        @value = @VueResourceForm.dateInterceptor.in(@dateValue + "T" + lz(hours) + ":" + lz(minutes))
+        @$value = @VueResourceForm.dateInterceptor.in(@dateValue + "T" + lz(hours) + ":" + lz(minutes))
 
   methods:
     onInput: ->
@@ -150,7 +148,7 @@ export default {
 
       value = @dateValue + "T" + lz(hours) + ":" + lz(minutes)
 
-      @value = @VueResourceForm.dateInterceptor.in(value)
+      @$value = @VueResourceForm.dateInterceptor.in(value)
 }
 
 </script>

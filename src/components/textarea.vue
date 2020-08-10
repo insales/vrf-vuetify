@@ -1,6 +1,6 @@
 <template>
 <v-textarea
-  v-model="value"
+  v-model="$value"
   :disabled="$disabled"
   :label="humanName"
   :error-messages="$errors[name] && $errors[name][0]"
@@ -16,10 +16,8 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
-
 export default {
-  extends: descriptors.textarea
+  vrfParent: 'textarea'
 }
 
 </script>

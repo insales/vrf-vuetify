@@ -1,11 +1,3 @@
-import {
-  RfPartial
-  RfResource
-  RfNested
-  RfSpan
-  Resource
-} from 'vrf'
-
 import RfCheckbox from './components/checkbox'
 import RfSwitch from './components/switch'
 import RfInput from './components/input'
@@ -22,20 +14,12 @@ import AutocompleteProvider from './autocomplete-provider'
 
 export {
   RfForm
-
   RfCheckbox
   RfSwitch
   RfInput
   RfSelect
   RfTextarea
   RfDatepicker
-  RfPartial
-  RfResource
-  RfNested
   RfAutocomplete
-
   RfSubmit
-  RfSpan
-
-  AutocompleteProvider
 }

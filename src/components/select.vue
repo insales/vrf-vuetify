@@ -4,7 +4,7 @@
 <v-select
   :name="name"
   :items="$_options"
-  v-model="value"
+  v-model="$value"
   :item-value="idKey"
   :item-text="titleKey"
   :label="humanName"
@@ -23,10 +23,8 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
-
 export default {
-  extends: descriptors.select
+  vrfParent: 'select'
 
   methods:
     onClear: ->

@@ -2,7 +2,7 @@
 
 <v-checkbox
   :label="humanName"
-  v-model="checkboxValue"
+  v-model="$value"
   :error-messages="$errors[name] && $errors[name][0]"
   :tabindex="tabindex"
   :disabled="$disabled"
@@ -16,10 +16,8 @@
 
 <script lang="coffee">
 
-import {fieldsDescriptors} from 'vrf'
-
 export default {
-  extends: fieldsDescriptors.checkbox
+  vrfParent: 'checkbox'
 }
 
 </script>

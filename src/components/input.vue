@@ -1,7 +1,7 @@
 <template>
 
 <v-text-field
-  v-model="value"
+  v-model="$value"
   :disabled="$disabled"
   :label="noLabel ? '' : humanName"
   :error-messages="$errors[name] && $errors[name][0]"
@@ -23,9 +23,8 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
 export default {
-  extends: descriptors.input
+  vrfParent: 'input'
   props:
     messages: Array
     autofocus: Boolean

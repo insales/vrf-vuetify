@@ -15,8 +15,6 @@
 
 <script lang="coffee">
 
-import {descriptors} from 'vrf'
-
 
 pick = (object, keys) ->
   keys.reduce(
@@ -40,7 +38,7 @@ vuetifyBooleanProps = [
 ]
 
 export default {
-  extends: descriptors.submit
+  vrfParent: 'submit'
 
   props:
     vuetifyBooleanProps.reduce(
