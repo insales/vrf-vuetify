@@ -46,6 +46,7 @@
       v-model="dateValue"
       no-title
       scrollable
+      first-day-of-week="1"
       :locale="locale"
       @input="onInput"
       v-else
