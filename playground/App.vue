@@ -15,6 +15,22 @@
           <rf-select name="importance" :options="importanceOptions" />
           <rf-textarea name="description" />
           <rf-span name="owner" />
+
+
+          <h3>Bitwise field</h3>
+          <h4>Markup based</h4>
+          <rf-bitwise name="flags">
+            <rf-checkbox name="some 1" power="1" />
+            <rf-checkbox name="some 2" power="2" />
+          </rf-bitwise>
+
+          <h4>Options based(inverted)</h4>
+          <rf-bitwise
+            name="flags"
+            :options="[{id: 1, title: 'some 1'}, {id: 2, title: 'some 2'}]"
+            inverted
+          />
+
           <v-btn color="primary" @click="add">Add</v-btn>
         </rf-form>
         <div style="flex: 1">
@@ -99,6 +115,7 @@ export default {
       importance: null
       description: ''
       owner: 'User #1'
+      flags: 0
 
   computed:
     importanceOptions: ->
