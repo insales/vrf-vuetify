@@ -40,7 +40,7 @@
 
       <h1> Nested form </h1>
       <div style="display: flex">
-        <rf-form :resource="user" class="form" readonly>
+        <rf-form :resource="user" class="form">
           <rf-nested name="todos">
             <template slot-scope="props">
               <div class="form">
