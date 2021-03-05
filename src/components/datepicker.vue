@@ -6,7 +6,7 @@
   transition="scale-transition"
   offset-y
   min-width="290px"
-  :disabled="$disabled"
+  :disabled="$disabled || $readonly"
 >
   <template v-slot:activator="{ on }">
     <v-text-field
@@ -15,6 +15,7 @@
       :label="noLabel ? '' :humanName"
       v-on="on"
       :disabled="$disabled"
+      :readonly="$readonly"
       :error-messages="$errors[name] && $errors[name][0]"
     />
   </template>

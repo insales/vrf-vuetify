@@ -3,6 +3,7 @@
 <v-text-field
   v-model="$value"
   :disabled="$disabled"
+  :readonly="$readonly"
   :label="noLabel ? '' : humanName"
   :error-messages="$errors[name] && $errors[name][0]"
   :required="required"

@@ -2,6 +2,7 @@
 <v-textarea
   v-model="$value"
   :disabled="$disabled"
+  :readonly="$readonly"
   :label="humanName"
   :error-messages="$errors[name] && $errors[name][0]"
   :required="required"
