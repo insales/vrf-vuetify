@@ -3,9 +3,16 @@
 <v-btn
   @click="onClick"
   v-bind="props"
+  v-if="!isActivatorSlot"
 >
   {{humanName}}
 </v-btn>
+
+<component :is="$vrfParent" v-bind="vrfProps" v-else>
+  <template v-slot:activator="props">
+    <slot name="activator" v-bind="props" />
+  </template>
+</component>
 
 </template>
 
@@ -48,6 +55,16 @@ export default {
   }
 
   computed:
+    vrfProps: ->
+      {
+        name: @name
+        params: @params
+        data: @data
+        method: @method
+      }
+    isActivatorSlot: ->
+      @$scopedSlots.activator?
+
     props: ->
       {
         color: @color
