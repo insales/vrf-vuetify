@@ -16,7 +16,9 @@
   :name="name"
   :tabindex="tabindex"
   :messages="messages"
-  :type="password ? 'password' : 'text'"
+  :type="type"
+  :append-icon="appendIcon"
+  @click:append="visible = !visible"
 />
 
 
@@ -31,6 +33,26 @@ export default {
     autofocus: Boolean
     suffix: String
     noLabel: Boolean
+    toggleVisibility: Boolean
+
+  data: ->
+    visible: false
+
+  computed:
+    type: ->
+      return 'text' unless @password
+
+      if @visible
+        'text'
+      else
+        'password'
+    appendIcon: ->
+      return unless @toggleVisibility
+
+      if @visible
+        'visibility_off'
+      else
+        'visibility'
 }
 
 </script>
