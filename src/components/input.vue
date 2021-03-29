@@ -50,9 +50,9 @@ export default {
       return unless @toggleVisibility
 
       if @visible
-        'visibility_off'
+        'mdi-eye-off'
       else
-        'visibility'
+        'mdi-eye'
 }
 
 </script>
