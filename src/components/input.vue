@@ -19,6 +19,7 @@
   :type="type"
   :append-icon="appendIcon"
   @click:append="visible = !visible"
+  :autocomplete="autocomplete"
 />
 
 
@@ -34,6 +35,7 @@ export default {
     suffix: String
     noLabel: Boolean
     toggleVisibility: Boolean
+    autocomplete: String
 
   data: ->
     visible: false
