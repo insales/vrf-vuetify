@@ -8,7 +8,7 @@
       <h1> Simple form </h1>
       <div style="display: flex">
         <rf-form :resource="todo" class="form">
-          <rf-input name="title" @input="onInput" />
+          <rf-input name="title" @input="onInput" copy-to-clipboard />
           <rf-checkbox name="status" />
           <rf-switch name="status" />
           <rf-datepicker name="finishTill" with-time />
@@ -100,7 +100,7 @@ export default {
 
   methods:
     onInput: ->
-      console.log arguments
+
     add: ->
       @user.todos.push(@todo)
 
