@@ -5,6 +5,11 @@
 
       VRF playground(Vuetify)
 
+      <rf-form auto name="Lala">
+        <rf-input name="test" />
+        <rf-submit />
+
+      </rf-form>
       <h1> Simple form </h1>
       <div style="display: flex">
         <rf-form :resource="todo" class="form">

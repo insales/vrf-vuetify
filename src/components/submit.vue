@@ -4,11 +4,12 @@
   v-if="!$disabled"
   v-bind="props"
 >
-  <div :class="{'transparent': showSuccess}">
+  <div :class="{'transparent': status}">
     <slot>{{humanName}}</slot>
   </div>
   <transition name="fade">
-    <v-icon color="white" class="icon-success" v-if="showSuccess">mdi-check</v-icon>
+    <v-icon color="white" class="icon-success" v-if="status === 'success'">mdi-check</v-icon>
+    <v-icon color="white" class="icon-success" v-if="status === 'error'">mdi-alert-circle</v-icon>
   </transition>
 </v-btn>
 </template>
@@ -49,17 +50,22 @@ export default {
     )
 
   data: ->
-    showSuccess: false
+    status: null
     color: 'primary'
 
   watch:
     $saving: ->
-      if not @$saving && Object.keys(@$errors).length is 0
-        @showSuccess = true
-        @color = 'green'
+      if not @$saving
+        if @$lastSaveFailed
+          @status = 'error'
+          @color = 'error'
+        else
+          @status = 'success'
+          @color = 'green'
+
         setTimeout(
           =>
-            @showSuccess = false
+            @status = null
             setTimeout(
               => @color = 'primary'
               100
@@ -73,18 +79,14 @@ export default {
         color: @color
         loading: @$saving
         disabled: @$disabled
-        class: {'not-clickable': @showSuccess, 'submit-btn': true}
+        class: {'not-clickable': !!@status, 'submit-btn': true}
         ...pick(@, vuetifyBooleanProps)
       }
 
 
-  # computed:
-  #   color: ->
-  #     if @showSuccess then 'green' else 'primary'
-
   methods:
     handleSubmit: ->
-      return if @showSuccess
+      return if @status
 
       @$submit()
 

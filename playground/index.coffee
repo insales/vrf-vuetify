@@ -6,6 +6,18 @@ import Vrf from 'vrf'
 
 # import vrf from '../dist/static/lib'
 
+class Middleware
+  @accepts: -> true
+
+  load: ->
+    Promise.resolve({})
+
+  loadSources: ->
+    Promise.resolve({})
+
+  save: ->
+    new Promise((resolve) -> setTimeout((-> resolve([false, {}])), 2000))
+
 Vue.config.productionTip = false
 Vue.use(
   Vrf
@@ -13,6 +25,7 @@ Vue.use(
   adapters: [
     VrfVuetify
   ]
+  middlewares: [Middleware]
 )
 
 
