@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dimailn/vrf-vuetify"
+    "url": "git+https://github.com/insales/vrf-vuetify"
   },
   "main": "dist/static/lib.js",
   "peerDepencies": {
