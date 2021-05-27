@@ -26,7 +26,8 @@ module.exports = (source) => {
     
 
 	const camelizedComponentName = capitalize(camelize(componentName))
-	// const doc = require(`./node_modules/vuetify-raw/packages/api-generator/src/locale/en/${componentName}.json`)
+	const doc = JSON.parse(fs.readFileSync(`./vuetify-raw/packages/api-generator/dist/web-types.json`).toString())
+	console.log(doc.contributions.html.tags.find((tag) => tag.name === camelizedComponentName))
 	const descriptor = fs.readFileSync(`./node_modules/vuetify/lib/components/${camelizedComponentName}/${camelizedComponentName}.js`).toString()
 	const nodes = Parser.parse(descriptor, {sourceType: 'module'}).body
 	
