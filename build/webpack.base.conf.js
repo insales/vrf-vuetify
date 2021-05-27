@@ -91,5 +91,9 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
+  },
+  resolveLoader: {
+    modules: ['node_modules', path.resolve('./')],
   }
 }
+

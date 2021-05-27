@@ -15,8 +15,8 @@
       :label="noLabel ? '' :humanName"
       v-on="on"
       :disabled="$disabled"
-      :readonly="$readonly"
       :error-messages="$errors[name] && $errors[name][0]"
+      v-bind="$vuetifyProps"
     />
   </template>
   <div style="display: flex; flex-direction: column">
@@ -82,8 +82,10 @@ lz = (v) ->
 export default {
   vrfParent: 'datepicker'
   props:
+    ### !vuetify-props(v-date-picker)! ###
     noLabel: Boolean
     withTime: Boolean
+
 
   data: ->
     datepickerVisible: false
@@ -94,8 +96,8 @@ export default {
       return if value
 
       @timeVisible = false
-
   computed:
+    ### !$vuetifyProps! ###
     locale: ->
       @VueResourceForm.locale
 
