@@ -8,7 +8,7 @@
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
+    "test": "echo 'No test'",
     "build": "node build/build.js",
     "pub": "npm run build && npm publish",
     "analyze": "webpack --config build/webpack.prod.conf.js --json > stats.json"
