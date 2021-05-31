@@ -12,6 +12,8 @@
   :rows="rows"
   :tabindex="tabindex"
   @change="onChange"
+  :hint="hint"
+  :persistent-hint="persistentHint"
 />
 </template>
 
@@ -19,6 +21,9 @@
 
 export default {
   vrfParent: 'textarea'
+  props:
+    hint: String
+    persistentHint: Boolean
 }
 
 </script>

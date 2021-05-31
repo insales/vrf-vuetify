@@ -16,6 +16,8 @@
   v-on="listeners"
   :tabindex="tabindex"
   no-data-text="Нет данных"
+  :hint="hint"
+  :persistent-hint="persistentHint"
 />
 
 
@@ -25,6 +27,9 @@
 
 export default {
   vrfParent: 'select'
+  props:
+    hint: String
+    persistentHint: Boolean
 
   methods:
     onClear: ->

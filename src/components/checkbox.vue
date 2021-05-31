@@ -8,6 +8,8 @@
   :disabled="$disabled"
   :indeterminate="indeterminate"
   v-on="$listeners"
+  :hint="hint"
+  :persistent-hint="persistentHint"
 />
 
 
@@ -18,6 +20,9 @@
 
 export default {
   vrfParent: 'checkbox'
+  props:
+    hint: String
+    persistentHint: Boolean
 }
 
 </script>
