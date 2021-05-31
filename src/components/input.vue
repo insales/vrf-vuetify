@@ -20,6 +20,8 @@
   :append-icon="appendIcon"
   @click:append="visible = !visible"
   :autocomplete="autocomplete"
+  :hint="hint"
+  :persistent-hint="persistentHint"
 >
   <template v-slot:append-outer>
     <v-btn icon ref="copyButton" @click="onCopy" v-show="copyToClipboard">
@@ -28,6 +30,9 @@
       <v-icon class="icon">mdi-content-copy</v-icon>
       </transition>
     </v-btn>
+  </template>
+  <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
+    <slot :name="name" v-bind="slotData" />
   </template>
 </v-text-field>
 
@@ -47,6 +52,8 @@ export default {
     toggleVisibility: Boolean
     copyToClipboard: Boolean
     autocomplete: String
+    hint: String
+    persistentHint: Boolean
 
   data: ->
     visible: false
@@ -87,7 +94,6 @@ export default {
         'mdi-check'
       else
         'mdi-content-copy'
-
 }
 
 
