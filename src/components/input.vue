@@ -20,6 +20,8 @@
   :append-icon="appendIcon"
   @click:append="visible = !visible"
   :autocomplete="autocomplete"
+  :hint="hint"
+  :persistent-hint="persistentHint"
 >
   <template v-slot:append-outer>
     <v-btn icon ref="copyButton" @click="onCopy" v-show="copyToClipboard">
@@ -47,6 +49,8 @@ export default {
     toggleVisibility: Boolean
     copyToClipboard: Boolean
     autocomplete: String
+    hint: String
+    persistentHint: Boolean
 
   data: ->
     visible: false
