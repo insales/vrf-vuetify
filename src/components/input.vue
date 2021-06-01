@@ -34,6 +34,9 @@
   <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
     <slot :name="name" v-bind="slotData" />
   </template>
+  <template v-if="htmlHint" v-slot:message="{ message }">
+    <span v-html="message"></span>
+  </template>
 </v-text-field>
 
 
@@ -54,6 +57,7 @@ export default {
     autocomplete: String
     hint: String
     persistentHint: Boolean
+    htmlHint: Boolean
 
   data: ->
     visible: false
