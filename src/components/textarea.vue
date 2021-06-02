@@ -14,6 +14,9 @@
   @change="onChange"
   :hint="hint"
   :persistent-hint="persistentHint"
+  :append-icon="appendIcon"
+  :prepend-icon="prependIcon"
+  :prepend-inner-icon="prependInnerIcon"
 />
 </template>
 
@@ -24,6 +27,9 @@ export default {
   props:
     hint: String
     persistentHint: Boolean
+    appendIcon: String
+    prependIcon: String
+    prependInnerIcon: String
 }
 
 </script>

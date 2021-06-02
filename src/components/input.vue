@@ -17,7 +17,9 @@
   :tabindex="tabindex"
   :messages="messages"
   :type="type"
-  :append-icon="appendIcon"
+  :append-icon="appendIconCumputed"
+  :prepend-icon="prependIcon"
+  :prepend-inner-icon="prependInnerIcon"
   @click:append="visible = !visible"
   :autocomplete="autocomplete"
   :hint="hint"
@@ -58,6 +60,9 @@ export default {
     hint: String
     persistentHint: Boolean
     htmlHint: Boolean
+    appendIcon: String
+    prependIcon: String
+    prependInnerIcon: String
 
   data: ->
     visible: false
@@ -85,19 +90,13 @@ export default {
       else
         'password'
 
-    appendIcon: ->
-      return unless @toggleVisibility
+    appendIconCumputed: ->
+      return this.appendIcon unless @toggleVisibility
 
       if @visible
         'mdi-eye-off'
       else
         'mdi-eye'
-
-    appendIconOuter: ->
-      if @showSuccessCopyIcon
-        'mdi-check'
-      else
-        'mdi-content-copy'
 }
 
 

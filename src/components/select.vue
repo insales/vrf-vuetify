@@ -18,6 +18,9 @@
   no-data-text="Нет данных"
   :hint="hint"
   :persistent-hint="persistentHint"
+  :append-icon="appendIcon"
+  :prepend-icon="prependIcon"
+  :prepend-inner-icon="prependInnerIcon"
 />
 
 
@@ -30,6 +33,9 @@ export default {
   props:
     hint: String
     persistentHint: Boolean
+    appendIcon: String
+    prependIcon: String
+    prependInnerIcon: String
 
   methods:
     onClear: ->
