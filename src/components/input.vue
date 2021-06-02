@@ -33,11 +33,11 @@
       </transition>
     </v-btn>
   </template>
-  <template v-for="(_, name) in $scopedSlots" v-slot:[name]="slotData">
-    <slot :name="name" v-bind="slotData" />
-  </template>
   <template v-if="htmlHint" v-slot:message="{ message }">
     <span v-html="message"></span>
+  </template>
+  <template v-for="(_, name) in $scopedSlots" v-slot:[name]>
+    <slot :name="name" />
   </template>
 </v-text-field>
 
