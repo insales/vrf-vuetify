@@ -16,7 +16,7 @@
   :name="name"
   :tabindex="tabindex"
   :messages="messages"
-  :type="type"
+  :type="resultType"
   :append-icon="appendIconCumputed"
   :prepend-icon="prependIcon"
   :prepend-inner-icon="prependInnerIcon"
@@ -67,6 +67,7 @@ export default {
     prependIcon: String
     prependInnerIcon: String
     outlined: Boolean
+    type: String
     dense: Boolean
     solo: Boolean
 
@@ -88,7 +89,8 @@ export default {
       )
 
   computed:
-    type: ->
+    resultType: ->
+      return @type if @type
       return 'text' unless @password
 
       if @visible
