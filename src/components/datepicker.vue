@@ -17,6 +17,9 @@
       :disabled="$disabled"
       :readonly="$readonly"
       :error-messages="$errors[name] && $errors[name][0]"
+      :outlined="outlined"
+      :dense="dense"
+      :solo="solo"
     />
   </template>
   <div style="display: flex; flex-direction: column">
@@ -84,6 +87,9 @@ export default {
   props:
     noLabel: Boolean
     withTime: Boolean
+    outlined: Boolean
+    dense: Boolean
+    solo: Boolean
 
   data: ->
     datepickerVisible: false

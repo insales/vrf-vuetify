@@ -21,6 +21,9 @@
   :append-icon="appendIcon"
   :prepend-icon="prependIcon"
   :prepend-inner-icon="prependInnerIcon"
+  :outlined="outlined"
+  :dense="dense"
+  :solo="solo"
 />
 
 
@@ -36,6 +39,9 @@ export default {
     appendIcon: String
     prependIcon: String
     prependInnerIcon: String
+    outlined: Boolean
+    dense: Boolean
+    solo: Boolean
 
   methods:
     onClear: ->
