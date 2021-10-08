@@ -16,7 +16,7 @@
       v-on="on"
       :disabled="$disabled"
       :readonly="$readonly"
-      :error-messages="$errors[name] && $errors[name][0]"
+      :error-messages="$firstError"
       :outlined="outlined"
       :dense="dense"
       :solo="solo"
