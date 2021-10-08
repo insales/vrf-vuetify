@@ -5,7 +5,7 @@
   :disabled="$disabled"
   :readonly="$readonly"
   :label="noLabel ? '' : humanName"
-  :error-messages="$errors[name] && $errors[name][0]"
+  :error-messages="$firstError"
   :required="required"
   :autofocus="autofocus"
   :suffix="suffix"

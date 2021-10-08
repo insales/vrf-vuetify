@@ -4,7 +4,7 @@
   :disabled="$disabled"
   :readonly="$readonly"
   :label="humanName"
-  :error-messages="$errors[name] && $errors[name][0]"
+  :error-messages="$firstError"
   :required="required"
   outlined
   multi-line

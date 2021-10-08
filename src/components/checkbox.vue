@@ -3,7 +3,7 @@
 <v-checkbox
   :label="noLabel ? '' : humanName"
   v-model="$value"
-  :error-messages="$errors[name] && $errors[name][0]"
+  :error-messages="$firstError"
   :tabindex="tabindex"
   :disabled="$disabled"
   :indeterminate="indeterminate"
