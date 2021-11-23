@@ -8,16 +8,15 @@ export default {
   render: (h) ->
     return @$slots.default[0] if @pathService && @$slots.default
 
-
     formChild =
-      if @auto && @$fetching
+      if @auto && @$fetching || !@$resource
         [h(Spinner, null) ]
         # [
         #   h('v-progress-circular', props: { size: 70, width: 7, indeterminat: true}, class: { 'vrf-progress': true})
         # ]
       else
-        @$slots.default
-
+        @$slots.default || @$scopedSlots.default()
+    
     h('form', on: { submit: (e) -> e.preventDefault() }, formChild)
 }
 
