@@ -5,14 +5,15 @@
 
       VRF playground(Vuetify)
 
-      <rf-form auto name="Lala">
+      <!-- <rf-form auto name="Lala">
         <rf-input name="test" />
         <rf-submit />
 
-      </rf-form>
+      </rf-form> -->
+
       <h1> Simple form </h1>
       <div style="display: flex">
-        <rf-form :resource="todo" class="form" v-slot="{}">
+        <rf-form :resource="todo" class="form">
           <rf-input name="title" @input="onInput" copy-to-clipboard />
           <rf-checkbox name="status" />
           <rf-switch name="status" />
