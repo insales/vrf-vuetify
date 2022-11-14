@@ -11,7 +11,6 @@
   :suffix="suffix"
   :placeholder="placeholder"
   @keyup.enter="$submit"
-  @input="onInput"
   @change="onChange"
   :name="name"
   :tabindex="tabindex"
@@ -47,64 +46,76 @@
 
 </template>
 
-<script lang="coffee">
+<script>
 import ClipboardJS from 'clipboard'
+import {VTextField} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'input'
-  props:
-    messages: Array
-    autofocus: Boolean
-    suffix: String
-    noLabel: Boolean
-    toggleVisibility: Boolean
-    copyToClipboard: Boolean
-    autocomplete: String
-    hint: String
-    persistentHint: Boolean
-    htmlHint: Boolean
-    appendIcon: String
-    prependIcon: String
-    prependInnerIcon: String
-    outlined: Boolean
-    type: String
-    dense: Boolean
+  vrfParent: 'input',
+  components: {
+    VTextField
+  },
+  props: {
+    messages: Array,
+    autofocus: Boolean,
+    suffix: String,
+    noLabel: Boolean,
+    toggleVisibility: Boolean,
+    copyToClipboard: Boolean,
+    autocomplete: String,
+    hint: String,
+    persistentHint: Boolean,
+    htmlHint: Boolean,
+    appendIcon: String,
+    prependIcon: String,
+    prependInnerIcon: String,
+    outlined: Boolean,
+    type: String,
+    dense: Boolean,
     solo: Boolean
-
-  data: ->
-    visible: false
-    showSuccessCopyIcon: false
-
-  mounted: ->
-    new ClipboardJS(@$refs.copyButton.$el, {
-      text: (trigger) => @$value
+  },
+  data() {
+    return {
+      visible: false,
+      showSuccessCopyIcon: false
+    }
+  },
+  mounted() {
+    new ClipboardJS(this.$refs.copyButton.$el, {
+      text: () => this.$value
     })
-  methods:
-    onCopy: ->
-      @showSuccessCopyIcon = true
+  },
+  methods: {
+    onCopy() {
+      this.showSuccessCopyIcon = true
 
       setTimeout(
-        => @showSuccessCopyIcon = false
+        () => this.showSuccessCopyIcon = false,
         1000
       )
+    }
+  },
+  computed: {
+    resultType() {
+      if (this.type) {
+        return this.type
+      }
 
-  computed:
-    resultType: ->
-      return @type if @type
-      return 'text' unless @password
+      if (!this.password) {
+        return 'text'
+      }
 
-      if @visible
-        'text'
-      else
-        'password'
+      return this.visible ? 'text' : 'password'
+    },
 
-    appendIconCumputed: ->
-      return this.appendIcon unless @toggleVisibility
+    appendIconCumputed() {
+      if (!this.toggleVisibility) {
+        return this.appendIcon
+      }
 
-      if @visible
-        'mdi-eye-off'
-      else
-        'mdi-eye'
+      return this.visible ? 'mdi-eye-off' : 'mdi-eye'
+    }
+  }
 }
 
 

@@ -48,7 +48,7 @@
       <div style="display: flex">
         <rf-form :resource="user" class="form">
           <rf-nested name="todos">
-            <template slot-scope="props">
+            <template v-slot="{}">
               <div class="form">
                 <rf-input name="title" />
                 <rf-checkbox name="status" />
@@ -59,7 +59,7 @@
 
                 <h2> rf-resource example </h2>
                 <rf-resource>
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     {{props}}
                   </template>
                 </rf-resource>
@@ -76,63 +76,73 @@
   </v-app>
 </template>
 
-<script lang="coffee">
+<script>
 export default {
-  data: ->
-    todo: null
-    user:
-      todos: [
-        {
-          title: 'First'
-          status: false
-          finishTill: null
-          importance: null
-          description: ''
-          owner: 'User #1'
-        }
-        {
-          title: 'Second'
-          status: false
-          finishTill: null
-          importance: null
-          description: ''
-          owner: 'User #1'
-        }
-      ]
+  data() {
+    return {
+      todo: null,
+      user: {
+        todos: [
+          {
+            title: 'First',
+            status: false,
+            finishTill: null,
+            importance: null,
+            description: '',
+            owner: 'User #1'
+          },
+          {
+            title: 'Second',
+            status: false,
+            finishTill: null,
+            importance: null,
+            description: '',
+            owner: 'User #1'
+          }
+        ]
+      }
+    }
+  },
 
+  created() {
+    this.todo = this.blank()
+  },
 
-  created: ->
-    @todo = @blank()
+  methods: {
+    onInput() { },
 
-  methods:
-    onInput: ->
+    add() {
+      this.user.todos.push(this.todo)
 
-    add: ->
-      @user.todos.push(@todo)
+      this.todo = this.blank()
+    },
 
-      @todo = @blank()
+    blank() {
+      return {
+        title: '',
+        status: false,
+        finishTill: null,
+        importance: null,
+        description: '',
+        owner: 'User #1',
+        flags: 0
+      }
+    }
+  },
 
-      # @user.todos.push(@blank())
-
-    blank: ->
-      title: ''
-      status: false
-      finishTill: null
-      importance: null
-      description: ''
-      owner: 'User #1'
-      flags: 0
-
-  computed:
-    importanceOptions: ->
-      [
+  computed: {
+    importanceOptions() {
+      return [
         {
           id: 1, title: 'Low'
-        }
+        },
         {
           id: 2, title: 'High'
         }
       ]
+    }
+  }
+
 }
 </script>
 

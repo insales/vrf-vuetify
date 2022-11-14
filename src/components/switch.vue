@@ -17,13 +17,19 @@
 </template>
 
 
-<script lang="coffee">
+<script>
+import {VSwitch} from 'vuetify/lib'
+
 
 export default {
-  vrfParent: 'checkbox'
-  props:
-    hint: String
+  vrfParent: 'checkbox',
+  components: {
+    VSwitch
+  },
+  props: {
+    hint: String,
     persistentHint: Boolean
+  }
 }
 
 </script>

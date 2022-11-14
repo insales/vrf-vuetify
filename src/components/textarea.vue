@@ -20,16 +20,21 @@
 />
 </template>
 
-<script lang="coffee">
+<script>
+import {VTextarea} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'textarea'
-  props:
-    hint: String
-    persistentHint: Boolean
-    appendIcon: String
-    prependIcon: String
+  vrfParent: 'textarea',
+  components: {
+    VTextarea
+  },
+  props: {
+    hint: String,
+    persistentHint: Boolean,
+    appendIcon: String,
+    prependIcon: String,
     prependInnerIcon: String
+  }
 }
 
 </script>

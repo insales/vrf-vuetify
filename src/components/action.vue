@@ -16,61 +16,74 @@
 
 </template>
 
-<script lang="coffee">
+<script>
 
+import {VBtn} from 'vuetify/lib'
 
-pick = (object, keys) ->
-  keys.reduce(
-    (obj, key) ->
-      if object && key of object
+const pick = (object, keys) => {
+  return keys.reduce(
+    (obj, key) => {
+      if(object && key in object) {
         obj[key] = object[key]
+      }
 
-      obj
-   {}
+      return obj
+    },
+    {}
   )
+}
 
-vuetifyBooleanProps = [
-  'fab'
-  'large'
-  'small'
-  'xLarge'
-  'xSmall'
-  'rounded'
-  'shaped'
-  'depressed'
+const vuetifyBooleanProps = [
+  'fab',
+  'large',
+  'small',
+  'xLarge',
+  'xSmall',
+  'rounded',
+  'shaped',
+  'depressed',
   'outlined'
 ]
 
 export default {
-  vrfParent: 'action'
-
+  vrfParent: 'action',
+  components: {
+    VBtn
+  },
   props: {
-    color: String
+    color: String,
     ...vuetifyBooleanProps.reduce(
-      (props, name) ->
+      (props, name) => {
         props[name] = Boolean
-        props
+        return props
+      },
       {}
     )
+  },
+
+  computed: {
+    vrfProps() {
+      return {
+        name: this.name,
+        params: this.params,
+        data: this.data,
+        method: this.method
+      }
+    },
+
+    isActivatorSlot() {
+      return !!this.$scopedSlots.activator
+    },
+
+    props() {
+      return {
+        color: this.color,
+        loading: this.$actionPendings[this.name],
+        ...pick(this, vuetifyBooleanProps)
+      }
+    }
   }
 
-  computed:
-    vrfProps: ->
-      {
-        name: @name
-        params: @params
-        data: @data
-        method: @method
-      }
-    isActivatorSlot: ->
-      @$scopedSlots.activator?
-
-    props: ->
-      {
-        color: @color
-        loading: @$actionPendings[@name]
-        ...pick(@, vuetifyBooleanProps)
-      }
 
 }
 
