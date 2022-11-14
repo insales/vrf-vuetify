@@ -15,7 +15,6 @@
       :label="noLabel ? '' :humanName"
       v-on="on"
       :disabled="$disabled"
-      :readonly="$readonly"
       :error-messages="$firstError"
       :outlined="outlined"
       :dense="dense"
@@ -76,87 +75,132 @@
 </template>
 
 
-<script lang="coffee">
+<script>
+import {VTextField, VMenu, VCard, VLayout, VFlex, VBtn, VDatePicker, VIcon} from 'vuetify/lib'
 
-lz = (v) ->
-  return v if v > 9
-  "0#{v}"
+const lz = (v) => v > 9 ? v : "0#{v}"
+
 
 export default {
-  vrfParent: 'datepicker'
-  props:
-    noLabel: Boolean
-    withTime: Boolean
-    outlined: Boolean
-    dense: Boolean
+  vrfParent: 'datepicker',
+  components: {
+    VTextField,
+    VMenu,
+    VCard,
+    VLayout,
+    VFlex,
+    VBtn,
+    VDatePicker,
+    VIcon
+  },
+  props: {
+    noLabel: Boolean,
+    withTime: Boolean,
+    outlined: Boolean,
+    dense: Boolean,
     solo: Boolean
+  },
 
-  data: ->
-    datepickerVisible: false
-    timeVisible: false
+  data() {
+    return {
+      datepickerVisible: false,
+      timeVisible: false
+    }
+  },
 
-  watch:
-    datepickerVisible: (value) ->
-      return if value
+  watch: {
+    datepickerVisible(value) {
+      if(value) {
+        return
+      }
 
-      @timeVisible = false
+      this.timeVisible = false
+    }
+  },
 
-  computed:
-    locale: ->
-      @VueResourceForm.locale
+  computed: {
+    locale() {
+      return this.VueResourceForm.locale
+    },
 
-    dateText: ->
-      return unless @dateValue
+    dateText() {
+      if (!this.dateValue) {
+        return
+      }
 
-      # TODO: format settings in vrf and delegate to interceptor
-      tokens = @dateValue.split("-")
+      // TODO: format settings in vrf and delegate to interceptor
+      const tokens = this.dateValue.split("-")
 
-      date = tokens[2] + "." + tokens[1] + "." + tokens[0]
+      const date = tokens[2] + "." + tokens[1] + "." + tokens[0]
 
-      if @withTime
-        date + " " + @timeValue
-      else
-        date
+      if (this.withTime) {
+        return date + " " + this.timeValue
+      }
+      else {
+        return date
+      }
+    },
 
-    dateValue:
-      get: ->
-        @VueResourceForm.dateInterceptor.out(@$value)?.substring(0, 10)
+    dateValue: {
+      get() {
+        return this.VueResourceForm.dateInterceptor.out(this.$value)?.substring(0, 10)
+      },
+      set(value) {
+        this.$value = this.VueResourceForm.dateInterceptor.in(value + "T" + this.timeValue)
+      }
+    },
+    date() {
+      return this.dateText?.split('T')[0]
+    },
+    time() {
+      return this.dateText?.split('T')[1]
+    },
+    timeValue: {
+      get() {
+        return this.VueResourceForm.dateInterceptor.out(this.$value)?.substring(11, 16) || "00:00"
+      },
+      set(time) {
+        if(!/\d\d:\d\d/.test(time)) {
+          return
+        }
 
-      set: (value) ->
-        @$value = @VueResourceForm.dateInterceptor.in(value + "T" + @timeValue)
+        let hours = parseInt(time.substring(0, 2))
+        let minutes = parseInt(time.substring(3))
 
-    date: ->
-      @dateText?.split('T')[0]
-    time: ->
-      @dateText?.split('T')[1]
-    timeValue:
-      get: ->
-        @VueResourceForm.dateInterceptor.out(@$value)?.substring(11, 16) || "00:00"
-      set: (time) ->
-        return unless /\d\d:\d\d/.test(time)
+        if (hours > 23) {
+          hours = 23
+        }
 
-        hours = parseInt(time.substring(0, 2))
-        minutes = parseInt(time.substring(3))
+        if (minutes > 59) {
+          minutes = 59
+        }
 
-        hours = 23 if hours > 23
-        minutes = 59 if minutes > 59
+        this.$value = this.VueResourceForm.dateInterceptor.in(this.dateValue + "T" + lz(hours) + ":" + lz(minutes))
+      }
+    }
+  },
 
-        @$value = @VueResourceForm.dateInterceptor.in(@dateValue + "T" + lz(hours) + ":" + lz(minutes))
+  methods: {
+    onInput() {
+      if(!this.withTime) {
+        this.datepickerVisible = false
+      }
+    },
+    modifyTime(incHours, incMinutes) {
+      if(!this.timeValue) {
+        return
+      }
 
-  methods:
-    onInput: ->
-      @datepickerVisible = false if !@withTime
-    modifyTime: (incHours, incMinutes) ->
-      return unless @timeValue
+      let hours = parseInt(this.timeValue.split(':')[0]) + incHours
+      let minutes = parseInt(this.timeValue.split(':')[1]) + incMinutes
+      hours = hours < 0 ? 24 + hours % 24 : hours % 24
+      minutes = minutes < 0 ? 60 + minutes % 60 : minutes % 60
 
-      hours = parseInt(@timeValue.split(':')[0]) + incHours
-      minutes = parseInt(@timeValue.split(':')[1]) + incMinutes
-      hours = if hours < 0 then 24 + hours % 24 else hours % 24
-      minutes = if minutes < 0 then 60 + minutes % 60 else minutes % 60
+      const value = this.dateValue + "T" + lz(hours) + ":" + lz(minutes)
 
-      value = @dateValue + "T" + lz(hours) + ":" + lz(minutes)
-
-      @$value = @VueResourceForm.dateInterceptor.in(value)
+      this.$value = this.VueResourceForm.dateInterceptor.in(value)
+    }
+  }
 }
 
 </script>

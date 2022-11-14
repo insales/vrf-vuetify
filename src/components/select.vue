@@ -29,25 +29,31 @@
 
 </template>
 
+
 <script lang="coffee">
+import {VSelect} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'select'
-  props:
-    hint: String
-    persistentHint: Boolean
-    appendIcon: String
-    prependIcon: String
-    prependInnerIcon: String
-    outlined: Boolean
-    dense: Boolean
+  components: {
+    VSelect
+  },
+  vrfParent: 'select',
+  props: {
+    hint: String,
+    persistentHint: Boolean,
+    appendIcon: String,
+    prependIcon: String,
+    prependInnerIcon: String,
+    outlined: Boolean,
+    dense: Boolean,
     solo: Boolean
+  },
 
-  methods:
-    onClear: ->
-      @$nextTick =>
-        @value = null
-
+  methods: {
+    onClear() {
+      this.$nextTick(() => this.value = null)
+    }
+  }
 }
 
 </script>

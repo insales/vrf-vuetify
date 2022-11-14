@@ -11,3 +11,17 @@
   </v-container>
 </template>
 
+
+<script>
+
+import {VContainer, VLayout, VProgressCircular} from 'vuetify/lib'
+
+export default {
+  components: {
+    VContainer,
+    VLayout,
+    VProgressCircular
+  }
+}
+
+</script>

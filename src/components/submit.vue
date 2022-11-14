@@ -14,82 +14,109 @@
 </v-btn>
 </template>
 
-<script lang="coffee">
+<script>
+import {VBtn, VIcon} from 'vuetify/lib'
 
 
-pick = (object, keys) ->
-  keys.reduce(
-    (obj, key) ->
-      if object && key of object
+const pick = (object, keys) => {
+  return keys.reduce(
+    (obj, key) => {
+      if(object && key in object) {
         obj[key] = object[key]
+      }
 
-      obj
-   {}
+      return obj
+    },
+    {}
   )
+}
 
-vuetifyBooleanProps = [
-  'fab'
-  'large'
-  'small'
-  'xLarge'
-  'xSmall'
-  'rounded'
-  'shaped'
-  'depressed'
+const vuetifyBooleanProps = [
+  'fab',
+  'large',
+  'small',
+  'xLarge',
+  'xSmall',
+  'rounded',
+  'shaped',
+  'depressed',
+  'outlined'
 ]
 
 export default {
-  vrfParent: 'submit'
+  vrfParent: 'submit',
 
-  props:
-    vuetifyBooleanProps.reduce(
-      (props, name) ->
-        props[name] = Boolean
-        props
-      {}
-    )
+  components: {
+    VBtn,
+    VIcon
+  },
 
-  data: ->
-    status: null
-    color: 'primary'
+  props: vuetifyBooleanProps.reduce(
+    (props, name) => {
+      props[name] = Boolean
+      return props
+    },
+    {}
+  ),
 
-  watch:
-    $saving: ->
-      if not @$saving
-        if @$lastSaveFailed
-          @status = 'error'
-          @color = 'error'
-        else
-          @status = 'success'
-          @color = 'green'
+  data() {
+    return {
+      status: null,
+      color: 'primary'
+    }
+  },
 
-        setTimeout(
-          =>
-            @status = null
-            setTimeout(
-              => @color = 'primary'
-              100
-            )
-          2000
-        )
-
-  computed:
-    props: ->
-      {
-        color: @color
-        loading: @$saving
-        disabled: @$disabled
-        class: {'not-clickable': !!@status, 'submit-btn': true}
-        ...pick(@, vuetifyBooleanProps)
+  watch: {
+    $saving() {
+      if (this.$saving) {
+        return
       }
 
 
-  methods:
-    handleSubmit: ->
-      return if @status
+      if (this.$lastSaveFailed) {
+        this.status = 'error'
+        this.color = 'error'
+      }
+      else {
+        this.status = 'success'
+        this.color = 'green'
+      }
 
-      @$submit()
+      setTimeout(
+        () => {
+          this.status = null
+          setTimeout(
+            () => this.color = 'primary',
+            100
+          )
+        },
+        2000
+      )
+    }
+  },
 
+  computed: {
+    props() {
+      return {
+        color: this.color,
+        loading: this.$saving,
+        disabled: this.$disabled,
+        class: {'not-clickable': !!this.status, 'submit-btn': true},
+        ...pick(this, vuetifyBooleanProps)
+      }
+    }
+  },
+
+
+  methods: {
+    handleSubmit() {
+      if (this.status) {
+        return
+      }
+
+      this.$submit()
+    }
+  }
 }
 
 </script>

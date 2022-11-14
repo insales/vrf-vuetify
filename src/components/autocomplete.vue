@@ -46,17 +46,27 @@
 </template>
 
 
-<script lang="coffee">
+<script>
+
+import {VTextField, VMenu} from 'vuetify/lib'
+
 
 export default {
-  vrfParent: 'autocomplete'
-  props:
-    messages: Array
+  vrfParent: 'autocomplete',
+  components: {
+    VTextField,
+    VMenu
+  },
+  props: {
+    messages: Array,
     clearable: Boolean
+  },
 
-  methods:
-    onKeydown: (e) ->
-      @$emit 'keydown', e
+  methods: {
+    onKeydown: (e) => {
+      this.$emit('keydown', e)
+    }
+  }
 }
 
 </script>
