@@ -19,6 +19,7 @@
       :outlined="outlined"
       :dense="dense"
       :solo="solo"
+      v-bind="$attrs"
     />
   </template>
   <div style="display: flex; flex-direction: column">
@@ -83,6 +84,7 @@ const lz = (v) => v > 9 ? v : "0#{v}"
 
 export default {
   vrfParent: 'datepicker',
+  inheritAttrs: false,
   components: {
     VTextField,
     VMenu,

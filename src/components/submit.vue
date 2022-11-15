@@ -2,7 +2,7 @@
 <v-btn
   @click="handleSubmit"
   v-if="!$disabled"
-  v-bind="props"
+  v-bind="{...props, ...$attrs}"
 >
   <div :class="{'transparent': status}">
     <slot>{{humanName}}</slot>
@@ -17,47 +17,14 @@
 <script>
 import {VBtn, VIcon} from 'vuetify/lib'
 
-
-const pick = (object, keys) => {
-  return keys.reduce(
-    (obj, key) => {
-      if(object && key in object) {
-        obj[key] = object[key]
-      }
-
-      return obj
-    },
-    {}
-  )
-}
-
-const vuetifyBooleanProps = [
-  'fab',
-  'large',
-  'small',
-  'xLarge',
-  'xSmall',
-  'rounded',
-  'shaped',
-  'depressed',
-  'outlined'
-]
-
 export default {
+  inheritAttrs: false,
   vrfParent: 'submit',
 
   components: {
     VBtn,
     VIcon
   },
-
-  props: vuetifyBooleanProps.reduce(
-    (props, name) => {
-      props[name] = Boolean
-      return props
-    },
-    {}
-  ),
 
   data() {
     return {
@@ -101,8 +68,7 @@ export default {
         color: this.color,
         loading: this.$saving,
         disabled: this.$disabled,
-        class: {'not-clickable': !!this.status, 'submit-btn': true},
-        ...pick(this, vuetifyBooleanProps)
+        class: {'not-clickable': !!this.status, 'submit-btn': true}
       }
     }
   },

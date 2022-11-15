@@ -30,6 +30,7 @@
         autocomplete="off"
         ref="autocomplete"
         :name="name"
+        v-bind="$attrs"
       />
     </template>
     <component :is="itemsComponent" :items="items" @select="onSelect" />
@@ -53,6 +54,7 @@ import {VTextField, VMenu} from 'vuetify/lib'
 
 export default {
   vrfParent: 'autocomplete',
+  inheritAttrs: false,
   components: {
     VTextField,
     VMenu

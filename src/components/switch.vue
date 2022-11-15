@@ -11,6 +11,7 @@
   v-on="$listeners"
   :hint="hint"
   :persistent-hint="persistentHint"
+  v-bind="$attrs"
 />
 
 
@@ -23,6 +24,7 @@ import {VSwitch} from 'vuetify/lib'
 
 export default {
   vrfParent: 'checkbox',
+  inheritAttrs: false,
   components: {
     VSwitch
   },

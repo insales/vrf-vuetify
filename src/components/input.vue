@@ -26,6 +26,7 @@
   :outlined="outlined"
   :dense="dense"
   :solo="solo"
+  v-bind="$attrs"
 >
   <template v-slot:append-outer>
     <v-btn icon ref="copyButton" @click="onCopy" v-show="copyToClipboard">
@@ -52,6 +53,7 @@ import {VTextField} from 'vuetify/lib'
 
 export default {
   vrfParent: 'input',
+  inheritAttrs: false,
   components: {
     VTextField
   },

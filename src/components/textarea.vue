@@ -17,6 +17,7 @@
   :append-icon="appendIcon"
   :prepend-icon="prependIcon"
   :prepend-inner-icon="prependInnerIcon"
+  v-bind="$attrs"
 />
 </template>
 
@@ -25,6 +26,7 @@ import {VTextarea} from 'vuetify/lib'
 
 export default {
   vrfParent: 'textarea',
+  inheritAttrs: false,
   components: {
     VTextarea
   },

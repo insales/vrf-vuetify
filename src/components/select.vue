@@ -24,6 +24,7 @@
   :outlined="outlined"
   :dense="dense"
   :solo="solo"
+  v-bind="$attrs"
 />
 
 
@@ -34,10 +35,11 @@
 import {VSelect} from 'vuetify/lib'
 
 export default {
+  vrfParent: 'select',
+  inheritAttrs: false,
   components: {
     VSelect
   },
-  vrfParent: 'select',
   props: {
     hint: String,
     persistentHint: Boolean,
