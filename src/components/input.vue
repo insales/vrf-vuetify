@@ -32,7 +32,7 @@
     <v-btn icon ref="copyButton" @click="onCopy" v-show="copyToClipboard">
       <v-icon color="green" v-if="showSuccessCopyIcon">mdi-check</v-icon>
       <transition name="fade" v-else>
-      <v-icon class="icon">mdi-content-copy</v-icon>
+        <v-icon class="icon">mdi-content-copy</v-icon>
       </transition>
     </v-btn>
   </template>
@@ -49,13 +49,15 @@
 
 <script>
 import ClipboardJS from 'clipboard'
-import {VTextField} from 'vuetify/lib'
+import {VTextField, VBtn, VIcon} from 'vuetify/lib'
 
 export default {
   vrfParent: 'input',
   inheritAttrs: false,
   components: {
-    VTextField
+    VTextField,
+    VBtn,
+    VIcon
   },
   props: {
     messages: Array,
