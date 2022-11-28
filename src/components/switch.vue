@@ -19,11 +19,12 @@
 
 
 <script>
+import {descriptors} from 'vrf'
 import {VSwitch} from 'vuetify/lib'
 
 
 export default {
-  vrfParent: 'checkbox',
+  extends: descriptors.checkbox,
   inheritAttrs: false,
   components: {
     VSwitch

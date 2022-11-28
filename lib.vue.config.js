@@ -3,7 +3,8 @@ module.exports = defineConfig({
   transpileDependencies: false,
   configureWebpack: {
     externals: {
-      "vuetify/lib": 'vuetify/lib'
+      "vuetify/lib": "vuetify/lib",
+      "vrf": "vrf"
     }
   }
 })

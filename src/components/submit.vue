@@ -15,11 +15,12 @@
 </template>
 
 <script>
+import {descriptors} from 'vrf'
 import {VBtn, VIcon} from 'vuetify/lib'
 
 export default {
   inheritAttrs: false,
-  vrfParent: 'submit',
+  extends: descriptors.submit,
 
   components: {
     VBtn,

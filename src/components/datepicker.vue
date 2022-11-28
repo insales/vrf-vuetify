@@ -77,13 +77,14 @@
 
 
 <script>
+import {descriptors} from 'vrf'
 import {VTextField, VMenu, VCard, VLayout, VFlex, VBtn, VDatePicker, VIcon} from 'vuetify/lib'
 
 const lz = (v) => v > 9 ? v : "0#{v}"
 
 
 export default {
-  vrfParent: 'datepicker',
+  extends: descriptors.datepicker,
   inheritAttrs: false,
   components: {
     VTextField,

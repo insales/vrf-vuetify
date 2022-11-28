@@ -22,10 +22,11 @@
 </template>
 
 <script>
+import {descriptors} from 'vrf'
 import {VTextarea} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'textarea',
+  extends: descriptors.textarea,
   inheritAttrs: false,
   components: {
     VTextarea

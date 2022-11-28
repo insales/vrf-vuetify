@@ -48,11 +48,12 @@
 </template>
 
 <script>
+import {descriptors} from 'vrf'
 import ClipboardJS from 'clipboard'
 import {VTextField, VBtn, VIcon} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'input',
+  extends: descriptors.input,
   inheritAttrs: false,
   components: {
     VTextField,
