@@ -48,12 +48,12 @@
 
 
 <script>
-
+import {descriptors} from 'vrf'
 import {VTextField, VMenu} from 'vuetify/lib'
 
 
 export default {
-  vrfParent: 'autocomplete',
+  extends: descriptors.autocomplete,
   inheritAttrs: false,
   components: {
     VTextField,

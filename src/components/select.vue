@@ -32,10 +32,11 @@
 
 
 <script lang="coffee">
+import {descriptors} from 'vrf'
 import {VSelect} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'select',
+  extends: descriptors.select,
   inheritAttrs: false,
   components: {
     VSelect

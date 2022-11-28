@@ -17,11 +17,11 @@
 </template>
 
 <script>
-
+import {descriptors} from 'vrf'
 import {VBtn} from 'vuetify/lib'
 
 export default {
-  vrfParent: 'action',
+  extends: descriptors.action,
   inheritAttrs: false,
   components: {
     VBtn
