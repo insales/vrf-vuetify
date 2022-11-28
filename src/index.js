@@ -5,6 +5,10 @@ export default {
   name: 'vrf-vuetify',
   components,
   install: (Vue) => {
-    Vue.prototype.VueResourceForm.loader = Spinner
+    if(Vue.globalProperties) {
+      Vue.globalProperties.VueResourceForm.loader = Spinner
+    } else {
+      Vue.prototype.VueResourceForm.loader = Spinner
+    }
   }
 }
